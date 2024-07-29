@@ -1,3 +1,5 @@
+# El presente archivo evita que documentos específicos inecesarios para el correcto funcionamiento del repositorio sean añadidos
+
 # macOS system files
 .DS_Store
 
