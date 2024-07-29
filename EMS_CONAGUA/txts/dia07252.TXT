@@ -1,0 +1,201 @@
+CNA-SMN-CG-GMC-SMAA-CLIMATOLOGIA
+BASE DE DATOS CLIMATOLOGICA
+DATOS DISPONIBLES EN LA BASE DE DATOS A DICIEMBRE 2022
+
+ESTACION  : 7252
+NOMBRE    : LA GRANDEZA
+ESTADO    : CHIAPAS
+MUNICIPIO : LA GRANDEZA
+SITUACION : OPERANDO
+ORGANISMO : CONAGUA
+CVE-OMM   : Nulo
+LATITUD   : 015.521°
+LONGITUD  : -92.226°
+ALTITUD   : 1940 msnm
+
+EMISIÓN   : 29/12/2022
+
+            PRECIP  EVAP   TMAX   TMIN   
+  Fecha     (MM)    (MM)   (°C)   (°C)   
+01/04/2014  0       Nulo   Nulo   Nulo   
+02/04/2014  2       Nulo   Nulo   Nulo   
+03/04/2014  0       Nulo   Nulo   Nulo   
+04/04/2014  0       Nulo   Nulo   Nulo   
+05/04/2014  0       Nulo   Nulo   Nulo   
+06/04/2014  0       Nulo   Nulo   Nulo   
+07/04/2014  0       Nulo   Nulo   Nulo   
+08/04/2014  0       Nulo   Nulo   Nulo   
+09/04/2014  2       Nulo   Nulo   Nulo   
+10/04/2014  4       Nulo   Nulo   Nulo   
+11/04/2014  3       Nulo   Nulo   Nulo   
+12/04/2014  5       Nulo   Nulo   Nulo   
+13/04/2014  5       Nulo   Nulo   Nulo   
+14/04/2014  6       Nulo   Nulo   Nulo   
+15/04/2014  5       Nulo   Nulo   Nulo   
+16/04/2014  0       Nulo   Nulo   Nulo   
+17/04/2014  0       Nulo   Nulo   Nulo   
+18/04/2014  6       Nulo   Nulo   Nulo   
+19/04/2014  2       Nulo   Nulo   Nulo   
+20/04/2014  3       Nulo   Nulo   Nulo   
+21/04/2014  0       Nulo   Nulo   Nulo   
+22/04/2014  8       Nulo   Nulo   Nulo   
+23/04/2014  11      Nulo   Nulo   Nulo   
+24/04/2014  17      Nulo   Nulo   Nulo   
+25/04/2014  6       Nulo   Nulo   Nulo   
+26/04/2014  9       Nulo   Nulo   Nulo   
+27/04/2014  0       Nulo   Nulo   Nulo   
+28/04/2014  10      Nulo   Nulo   Nulo   
+29/04/2014  11      Nulo   Nulo   Nulo   
+30/04/2014  0       Nulo   Nulo   Nulo   
+01/05/2014  10      Nulo   Nulo   Nulo   
+02/05/2014  8       Nulo   Nulo   Nulo   
+03/05/2014  5       Nulo   Nulo   Nulo   
+04/05/2014  3       Nulo   Nulo   Nulo   
+05/05/2014  8       Nulo   Nulo   Nulo   
+06/05/2014  0       Nulo   Nulo   Nulo   
+07/05/2014  5       Nulo   Nulo   Nulo   
+08/05/2014  4       Nulo   Nulo   Nulo   
+09/05/2014  5       Nulo   Nulo   Nulo   
+10/05/2014  0       Nulo   Nulo   Nulo   
+11/05/2014  13      Nulo   Nulo   Nulo   
+12/05/2014  5       Nulo   Nulo   Nulo   
+13/05/2014  12      Nulo   Nulo   Nulo   
+14/05/2014  18.2    Nulo   Nulo   Nulo   
+15/05/2014  11.2    Nulo   Nulo   Nulo   
+16/05/2014  20.2    Nulo   Nulo   Nulo   
+17/05/2014  15      Nulo   Nulo   Nulo   
+18/05/2014  12      Nulo   Nulo   Nulo   
+19/05/2014  20      Nulo   Nulo   Nulo   
+20/05/2014  13      Nulo   Nulo   Nulo   
+21/05/2014  11      Nulo   Nulo   Nulo   
+22/05/2014  13      Nulo   Nulo   Nulo   
+23/05/2014  15      Nulo   Nulo   Nulo   
+24/05/2014  18      Nulo   Nulo   Nulo   
+25/05/2014  5       Nulo   Nulo   Nulo   
+26/05/2014  10      Nulo   Nulo   Nulo   
+27/05/2014  9       Nulo   Nulo   Nulo   
+28/05/2014  12      Nulo   Nulo   Nulo   
+29/05/2014  20      Nulo   Nulo   Nulo   
+30/05/2014  0       Nulo   Nulo   Nulo   
+01/06/2014  10.2    Nulo   Nulo   Nulo   
+02/06/2014  8       Nulo   Nulo   Nulo   
+03/06/2014  0.5     Nulo   Nulo   Nulo   
+04/06/2014  11.2    Nulo   Nulo   Nulo   
+05/06/2014  14      Nulo   Nulo   Nulo   
+06/06/2014  18.1    Nulo   Nulo   Nulo   
+07/06/2014  9       Nulo   Nulo   Nulo   
+08/06/2014  5.2     Nulo   Nulo   Nulo   
+09/06/2014  12      Nulo   Nulo   Nulo   
+10/06/2014  10.2    Nulo   Nulo   Nulo   
+11/06/2014  18.3    Nulo   Nulo   Nulo   
+12/06/2014  5       Nulo   Nulo   Nulo   
+13/06/2014  1       Nulo   Nulo   Nulo   
+14/06/2014  11      Nulo   Nulo   Nulo   
+15/06/2014  9.2     Nulo   Nulo   Nulo   
+16/06/2014  10      Nulo   Nulo   Nulo   
+17/06/2014  5       Nulo   Nulo   Nulo   
+18/06/2014  10.4    Nulo   Nulo   Nulo   
+19/06/2014  8.3     Nulo   Nulo   Nulo   
+20/06/2014  17      Nulo   Nulo   Nulo   
+21/06/2014  8.2     Nulo   Nulo   Nulo   
+22/06/2014  5       Nulo   Nulo   Nulo   
+23/06/2014  2       Nulo   Nulo   Nulo   
+24/06/2014  5       Nulo   Nulo   Nulo   
+25/06/2014  4       Nulo   Nulo   Nulo   
+26/06/2014  11      Nulo   Nulo   Nulo   
+27/06/2014  12.3    Nulo   Nulo   Nulo   
+28/06/2014  14      Nulo   Nulo   Nulo   
+29/06/2014  5.2     Nulo   Nulo   Nulo   
+30/06/2014  10.4    Nulo   Nulo   Nulo   
+01/07/2014  4       Nulo   Nulo   Nulo   
+02/07/2014  5.2     Nulo   Nulo   Nulo   
+03/07/2014  8       Nulo   Nulo   Nulo   
+04/07/2014  6.1     Nulo   Nulo   Nulo   
+05/07/2014  3       Nulo   Nulo   Nulo   
+06/07/2014  4       Nulo   Nulo   Nulo   
+07/07/2014  10      Nulo   Nulo   Nulo   
+08/07/2014  6       Nulo   Nulo   Nulo   
+09/07/2014  11.3    Nulo   Nulo   Nulo   
+10/07/2014  8.3     Nulo   Nulo   Nulo   
+11/07/2014  1       Nulo   Nulo   Nulo   
+12/07/2014  2       Nulo   Nulo   Nulo   
+13/07/2014  2       Nulo   Nulo   Nulo   
+14/07/2014  0       Nulo   Nulo   Nulo   
+15/07/2014  0       Nulo   Nulo   Nulo   
+16/07/2014  0       Nulo   Nulo   Nulo   
+17/07/2014  0       Nulo   Nulo   Nulo   
+18/07/2014  0       Nulo   Nulo   Nulo   
+19/07/2014  0       Nulo   Nulo   Nulo   
+20/07/2014  0       Nulo   Nulo   Nulo   
+21/07/2014  0       Nulo   Nulo   Nulo   
+22/07/2014  5       Nulo   Nulo   Nulo   
+23/07/2014  4.2     Nulo   Nulo   Nulo   
+24/07/2014  0       Nulo   Nulo   Nulo   
+25/07/2014  0       Nulo   Nulo   Nulo   
+26/07/2014  0       Nulo   Nulo   Nulo   
+27/07/2014  5       Nulo   Nulo   Nulo   
+28/07/2014  6.2     Nulo   Nulo   Nulo   
+29/07/2014  8       Nulo   Nulo   Nulo   
+30/07/2014  0       Nulo   Nulo   Nulo   
+01/08/2014  0       Nulo   Nulo   Nulo   
+02/08/2014  0       Nulo   Nulo   Nulo   
+03/08/2014  0       Nulo   Nulo   Nulo   
+04/08/2014  4       Nulo   Nulo   Nulo   
+05/08/2014  6       Nulo   Nulo   Nulo   
+06/08/2014  8       Nulo   Nulo   Nulo   
+07/08/2014  10      Nulo   Nulo   Nulo   
+08/08/2014  50      Nulo   Nulo   Nulo   
+09/08/2014  4       Nulo   Nulo   Nulo   
+10/08/2014  3       Nulo   Nulo   Nulo   
+11/08/2014  10.2    Nulo   Nulo   Nulo   
+12/08/2014  0       Nulo   Nulo   Nulo   
+13/08/2014  0       Nulo   Nulo   Nulo   
+14/08/2014  3       Nulo   Nulo   Nulo   
+15/08/2014  4.2     Nulo   Nulo   Nulo   
+16/08/2014  10.3    Nulo   Nulo   Nulo   
+17/08/2014  5       Nulo   Nulo   Nulo   
+18/08/2014  0       Nulo   Nulo   Nulo   
+19/08/2014  0       Nulo   Nulo   Nulo   
+20/08/2014  6       Nulo   Nulo   Nulo   
+21/08/2014  4.2     Nulo   Nulo   Nulo   
+22/08/2014  6.2     Nulo   Nulo   Nulo   
+23/08/2014  8.2     Nulo   Nulo   Nulo   
+24/08/2014  0       Nulo   Nulo   Nulo   
+25/08/2014  0       Nulo   Nulo   Nulo   
+26/08/2014  4.2     Nulo   Nulo   Nulo   
+27/08/2014  0       Nulo   Nulo   Nulo   
+28/08/2014  10.3    Nulo   Nulo   Nulo   
+29/08/2014  8.3     Nulo   Nulo   Nulo   
+30/08/2014  15.4    Nulo   Nulo   Nulo   
+31/08/2014  8.3     Nulo   Nulo   Nulo   
+01/09/2014  10.5    Nulo   Nulo   Nulo   
+02/09/2014  6.2     Nulo   Nulo   Nulo   
+03/09/2014  9       Nulo   Nulo   Nulo   
+04/09/2014  18      Nulo   Nulo   Nulo   
+05/09/2014  7       Nulo   Nulo   Nulo   
+06/09/2014  15.2    Nulo   Nulo   Nulo   
+07/09/2014  10.4    Nulo   Nulo   Nulo   
+08/09/2014  14.2    Nulo   Nulo   Nulo   
+09/09/2014  8       Nulo   Nulo   Nulo   
+10/09/2014  10.2    Nulo   Nulo   Nulo   
+11/09/2014  20.3    Nulo   Nulo   Nulo   
+12/09/2014  10.6    Nulo   Nulo   Nulo   
+13/09/2014  9.5     Nulo   Nulo   Nulo   
+14/09/2014  20.2    Nulo   Nulo   Nulo   
+15/09/2014  24.3    Nulo   Nulo   Nulo   
+16/09/2014  10.5    Nulo   Nulo   Nulo   
+17/09/2014  15      Nulo   Nulo   Nulo   
+18/09/2014  5       Nulo   Nulo   Nulo   
+19/09/2014  19      Nulo   Nulo   Nulo   
+20/09/2014  7       Nulo   Nulo   Nulo   
+21/09/2014  6.3     Nulo   Nulo   Nulo   
+22/09/2014  20.4    Nulo   Nulo   Nulo   
+23/09/2014  16.2    Nulo   Nulo   Nulo   
+24/09/2014  10.5    Nulo   Nulo   Nulo   
+25/09/2014  20.1    Nulo   Nulo   Nulo   
+26/09/2014  5       Nulo   Nulo   Nulo   
+27/09/2014  0       Nulo   Nulo   Nulo   
+28/09/2014  4       Nulo   Nulo   Nulo   
+29/09/2014  8       Nulo   Nulo   Nulo   
+30/09/2014  10.2    Nulo   Nulo   Nulo   
+--------------------------------------
