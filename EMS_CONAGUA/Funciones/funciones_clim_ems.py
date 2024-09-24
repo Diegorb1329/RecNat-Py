@@ -10,6 +10,7 @@ from shapely.geometry import Polygon
 from tqdm import tqdm
 
 def generar_histogramas_redondeo(df, variables, output_path):
+    """Genera los histogramas de redondeo para las variables climatológicas."""
     fig, axs = plt.subplots(1, len(variables), figsize=(20, 5), sharey=True)
 
     # Diccionario para asignar colores a las variables
@@ -483,6 +484,220 @@ def reporte_calidad(file_paths, output_dir, fecha_inicio=None, fecha_fin=None):
 
         print(f"Reporte de calidad generado con éxito: {report_path}")
 
+
+# Función para extraer datos climatológicos
+def extraer_datos_climatologicos(file_path):
+    with open(file_path, 'r', encoding='ISO-8859-1') as file:
+        lines = file.readlines()
+
+    # Encontrar el inicio de los datos climatológicos
+    inicio_datos = None
+    for i, line in enumerate(lines):
+        if line.strip().startswith('Fecha'):
+            inicio_datos = i + 1
+            break
+
+    if inicio_datos is None:
+        print("No se encontró el inicio de los datos climatológicos en el archivo.")
+        return pd.DataFrame()  # Retornar un DataFrame vacío si no se encuentra el inicio de los datos
+
+    # Extraer y procesar los datos climatológicos
+    data = []
+    for line in lines[inicio_datos:]:
+        parts = line.strip().split()
+        if len(parts) >= 5:
+            fecha = parts[0]
+            precip = parts[1]
+            evap = parts[2] if parts[2] != 'Nulo' else None
+            tmax = parts[3] if parts[3] != 'Nulo' else None
+            tmin = parts[4] if parts[4] != 'Nulo' else None
+            data.append([fecha, precip, evap, tmax, tmin])
+
+    # Convertir a DataFrame
+    df = pd.DataFrame(data, columns=['Fecha', 'Precip', 'Evap', 'Tmax', 'Tmin'])
+
+    # Convertir tipos de datos
+    df['Fecha'] = pd.to_datetime(df['Fecha'], errors='coerce')
+    df['Precip'] = pd.to_numeric(df['Precip'], errors='coerce')
+    df['Evap'] = pd.to_numeric(df['Evap'], errors='coerce')
+    df['Tmax'] = pd.to_numeric(df['Tmax'], errors='coerce')
+    df['Tmin'] = pd.to_numeric(df['Tmin'], errors='coerce')
+
+    # Eliminar filas con valores faltantes en 'Fecha', 'Tmax', o 'Tmin'
+    df = df.dropna(subset=['Fecha', 'Tmax', 'Tmin'])
+
+    # Restablecer el índice
+    df = df.reset_index(drop=True)
+
+    return df
+
+# Utilizar la función para cargar los datos del archivo
+df_new = extraer_datos_climatologicos(ruta_archivo_txt)
+
+#print("Información del DataFrame después de cargar los datos:")
+#df_new.info()
+#print(df_new.head())
+
+# Descripciones de variables bioclimáticas
+descriptions = {
+    'BIO1': "Temperatura media anual.",
+    'BIO2': "Rango diurno medio (diferencia entre la temperatura máxima y mínima mensual promedio).",
+    'BIO3': "Isotermalidad (relación entre el rango diurno medio del mes y la oscilación anual de temperatura, multiplicado por 100).",
+    'BIO4': "Estacionalidad de la temperatura (desviación estándar de la temperatura mensual multiplicada por 100).",
+    'BIO5': "Temperatura máxima del mes más cálido.",
+    'BIO6': "Temperatura mínima del mes más frío.",
+    'BIO7': "Rango anual de temperatura (diferencia entre BIO5 y BIO6).",
+    'BIO8': "Temperatura media del trimestre más húmedo.",
+    'BIO9': "Temperatura media del trimestre más seco.",
+    'BIO10': "Temperatura media del trimestre más cálido.",
+    'BIO11': "Temperatura media del trimestre más frío.",
+    'BIO12': "Precipitación anual total.",
+    'BIO13': "Precipitación del mes más húmedo.",
+    'BIO14': "Precipitación del mes más seco.",
+    'BIO15': "Estacionalidad de la precipitación (coeficiente de variación).",
+    'BIO16': "Precipitación del trimestre más húmedo.",
+    'BIO17': "Precipitación del trimestre más seco.",
+    'BIO18': "Precipitación del trimestre más cálido.",
+    'BIO19': "Precipitación del trimestre más frío."
+}
+
+def preparar_data(df):
+    """Prepara los datos extrayendo mes, trimestre y año de la fecha."""
+    df['Month'] = df['Fecha'].dt.month
+    df['Quarter'] = df['Fecha'].dt.quarter
+    df['Year'] = df['Fecha'].dt.year
+    return df
+
+def filter_years_with_insufficient_data(df, missing_data_threshold=10):
+    """Filtra los años con más del porcentaje especificado de datos faltantes en precipitaciones."""
+    # Contar total de días y días faltantes por año
+    total_days_per_year = df.groupby('Year').size()
+    missing_days_per_year = df[df['Precip'].isnull()].groupby('Year').size()
+
+    # Calcular el porcentaje de días faltantes
+    missing_percentage = (missing_days_per_year / total_days_per_year) * 100
+
+    # Rellenar años sin datos faltantes con 0%
+    missing_percentage = missing_percentage.reindex(total_days_per_year.index, fill_value=0)
+
+    #print("Porcentaje de datos faltantes por año:")
+    #print(missing_percentage)
+
+    # Identificar años con menos del umbral de datos faltantes
+    valid_years = missing_percentage[missing_percentage <= missing_data_threshold].index
+    print("Años válidos después del filtrado:", valid_years.tolist())
+
+    # Filtrar el DataFrame para incluir solo los años válidos
+    filtered_df = df[df['Year'].isin(valid_years)]
+    return filtered_df
+
+def calculate_annual_precipitation(df):
+    """Calcula la precipitación total anual y luego promedia estos totales a través de los años válidos."""
+    annual_precipitation = df.groupby('Year')['Precip'].sum()
+    average_annual_precipitation = annual_precipitation.mean()
+    return average_annual_precipitation
+
+def calculate_monthly_and_quarterly_averages(df):
+    """Calcula los promedios mensuales y trimestrales de Tmax y Tmin."""
+    monthly_avg_temp = df.groupby('Month')[['Tmax', 'Tmin']].mean()
+    quarterly_avg_temp = df.groupby('Quarter')[['Tmax', 'Tmin']].mean()
+    return monthly_avg_temp, quarterly_avg_temp
+
+def calculate_precipitation_extremes(df):
+    """Calcula los extremos de precipitación necesarios para las variables bioclimáticas."""
+    # Precipitación mensual total
+    monthly_precip_total = df.groupby('Month')['Precip'].sum()
+
+    # Precipitación del mes más húmedo y más seco (BIO13 y BIO14)
+    max_precip_total = monthly_precip_total.max()
+    min_precip_total = monthly_precip_total.min()
+
+    # Precipitación trimestral total
+    quarterly_precip_total = df.groupby('Quarter')['Precip'].sum()
+
+    # Precipitación del trimestre más húmedo y más seco (BIO16 y BIO17)
+    max_quarter_precip_total = quarterly_precip_total.max()
+    min_quarter_precip_total = quarterly_precip_total.min()
+
+    # Temperaturas trimestrales promedio
+    quarterly_temp = df.groupby('Quarter')[['Tmax', 'Tmin']].mean()
+
+    # Verificar que quarterly_temp y quarterly_precip_total no estén vacíos
+    if quarterly_temp.empty or quarterly_precip_total.empty:
+        print("No hay datos suficientes para calcular los extremos de precipitación y temperatura.")
+        return (None,) * 6
+
+    # Identificar el trimestre más cálido y más frío
+    quarterly_mean_temp = quarterly_temp.mean(axis=1)
+    warmest_quarter = quarterly_mean_temp.idxmax()
+    coldest_quarter = quarterly_mean_temp.idxmin()
+
+    # Precipitación del trimestre más cálido y más frío (BIO18 y BIO19)
+    warmest_quarter_precip_total = quarterly_precip_total.loc[warmest_quarter]
+    coldest_quarter_precip_total = quarterly_precip_total.loc[coldest_quarter]
+
+    return (max_precip_total, min_precip_total, max_quarter_precip_total, min_quarter_precip_total,
+            warmest_quarter_precip_total, coldest_quarter_precip_total)
+
+def calculate_bioclimatic_variables(df):
+   
+    df = preparar_data(df_new)
+    df = filter_years_with_insufficient_data(df, missing_data_threshold=30)  # Ajuste del umbral a 30%
+
+    if df.empty:
+        print("El DataFrame está vacío después de filtrar por años con datos insuficientes.")
+        return None  # O puedes retornar un DataFrame vacío o manejarlo según tu necesidad
+
+    monthly_avg_temp, quarterly_avg_temp = calculate_monthly_and_quarterly_averages(df)
+    (max_precip_total, min_precip_total, max_quarter_precip_total, min_quarter_precip_total,
+     warmest_quarter_precip_total, coldest_quarter_precip_total) = calculate_precipitation_extremes(df)
+
+    # Verificar si los valores calculados son None debido a datos insuficientes
+    if None in [max_precip_total, min_precip_total, max_quarter_precip_total, min_quarter_precip_total,
+                warmest_quarter_precip_total, coldest_quarter_precip_total]:
+        print("No se pudieron calcular todos los extremos de precipitación.")
+        return None
+
+    average_annual_precipitation = calculate_annual_precipitation(df)
+
+    # Identificar el trimestre más cálido y más frío para las temperaturas
+    quarterly_mean_temp = quarterly_avg_temp.mean(axis=1)
+    warmest_quarter_temp = quarterly_avg_temp.loc[quarterly_mean_temp.idxmax()].mean()
+    coldest_quarter_temp = quarterly_avg_temp.loc[quarterly_mean_temp.idxmin()].mean()
+
+    # Cálculo de BIO8 y BIO9 basados en la temperatura media del trimestre más húmedo y más seco
+    quarterly_precip_total = df.groupby('Quarter')['Precip'].sum()
+    wettest_quarter = quarterly_precip_total.idxmax()
+    driest_quarter = quarterly_precip_total.idxmin()
+    bio8 = quarterly_avg_temp.loc[wettest_quarter].mean()
+    bio9 = quarterly_avg_temp.loc[driest_quarter].mean()
+
+    results = {
+        'BIO1': monthly_avg_temp[['Tmax', 'Tmin']].mean().mean(),
+        'BIO2': (monthly_avg_temp['Tmax'] - monthly_avg_temp['Tmin']).mean(),
+        'BIO3': 100 * ((monthly_avg_temp['Tmax'] - monthly_avg_temp['Tmin']).mean() /
+                       (monthly_avg_temp['Tmax'].max() - monthly_avg_temp['Tmin'].min())),
+        'BIO4': monthly_avg_temp[['Tmax', 'Tmin']].std().mean() * 100,
+        'BIO5': monthly_avg_temp['Tmax'].max(),
+        'BIO6': monthly_avg_temp['Tmin'].min(),
+        'BIO7': monthly_avg_temp['Tmax'].max() - monthly_avg_temp['Tmin'].min(),
+        'BIO8': bio8,
+        'BIO9': bio9,
+        'BIO10': warmest_quarter_temp,
+        'BIO11': coldest_quarter_temp,
+        'BIO12': average_annual_precipitation,
+        'BIO13': max_precip_total,
+        'BIO14': min_precip_total,
+        'BIO15': (df.groupby('Month')['Precip'].std() / df.groupby('Month')['Precip'].mean() * 100).mean(),
+        'BIO16': max_quarter_precip_total,
+        'BIO17': min_quarter_precip_total,
+        'BIO18': warmest_quarter_precip_total,
+        'BIO19': coldest_quarter_precip_total
+    }
+
+    bio_df = pd.DataFrame(list(results.items()), columns=['Variable', 'Valor'])
+    bio_df['Definición'] = bio_df['Variable'].apply(lambda x: descriptions.get(x, ''))
+    return bio_df
 
 def pr(folder_path, metadata_path, output_folder):
     # Cargar los metadatos
